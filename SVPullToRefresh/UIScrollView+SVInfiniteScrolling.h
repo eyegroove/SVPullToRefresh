@@ -11,6 +11,12 @@
 
 @class SVInfiniteScrollingView;
 
+@protocol SVInfiniteScrollingDelegate <NSObject>
+
+- (BOOL) infiniteScrollingViewCanLoadNextPage;
+
+@end
+
 @interface UIScrollView (SVInfiniteScrolling)
 
 - (void)addInfiniteScrollingWithActionHandler:(void (^)(void))actionHandler;
@@ -18,6 +24,9 @@
 
 @property (nonatomic, strong, readonly) SVInfiniteScrollingView *infiniteScrollingView;
 @property (nonatomic, assign) BOOL showsInfiniteScrolling;
+@property (nonatomic, assign) CGFloat infiniteScrollTriggerThreshold;
+@property (nonatomic, assign) BOOL infiniteScrollLoadsWhileScrolling;
+@property (nonatomic, weak) id<SVInfiniteScrollingDelegate> infiniteScrollingDelegate;
 
 @end
 
